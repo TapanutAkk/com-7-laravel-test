@@ -32,4 +32,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::get('/contact', function () {
+        return Inertia::render('Contact/Create');
+    })->name('contact');
 });
