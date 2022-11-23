@@ -8,20 +8,13 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Datepicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
+import '@vuepic/vue-datepicker/dist/main.css';
+import axios from 'axios';
 
-const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-    terms: false,
-});
+const form = useForm();
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+    form.post(route('store-contact'));
 };
 </script>
 
@@ -41,7 +34,6 @@ const submit = () => {
                     v-model="form.name"
                     type="text"
                     class="mt-1 block w-full"
-                    required
                     autofocus
                     autocomplete="name"
                 />
@@ -55,7 +47,6 @@ const submit = () => {
                     v-model="form.email"
                     type="email"
                     class="mt-1 block w-full"
-                    required
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
@@ -67,7 +58,6 @@ const submit = () => {
                     v-model="form.phone"
                     type="text"
                     class="mt-1 block w-full"
-                    required
                 />
                 <InputError class="mt-2" :message="form.errors.phone" />
             </div>
@@ -79,7 +69,6 @@ const submit = () => {
                     v-model="form.message"
                     type="text"
                     class="mt-1 block w-full"
-                    required
                 />
                 <InputError class="mt-2" :message="form.errors.message" />
             </div>
@@ -97,7 +86,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <Checkbox id="is_need_on_site_service" v-model:checked="form.is_need_on_site_service" name="terms" required /> Need on site service
+                <Checkbox id="is_need_on_site_service" v-model:checked="form.is_need_on_site_service" name="is_need_on_site_service" /> Need on site service
                 <InputError class="mt-2" :message="form.errors.is_need_on_site_service" />
             </div>
 
@@ -108,7 +97,6 @@ const submit = () => {
                     v-model="form.address"
                     type="text"
                     class="mt-1 block w-full"
-                    required
                 />
                 <InputError class="mt-2" :message="form.errors.address" />
             </div>
